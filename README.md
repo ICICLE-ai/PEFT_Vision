@@ -7,13 +7,13 @@ sparked a plethora of approaches. We conduct a unifying empirical study of 14 re
 
 We systematically tune their hyper-parameters to fairly compare their accuracy on downstream tasks. Our study not only offers a valuable user guide but also unveils several new insights. More details can be found in [our paper](https://arxiv.org/pdf/2409.16434). 
 
-This code base contains the following features::
+This code base contains the following features:
 1.  [Evaluate a PEFT method on one dataset with selected hyper-parameters](#evaluate-a-peft-method-on-one-dataset-in-vtab-1k)
 2. [Run hyper-parameter tuning for PEFT methods](#run-hyper-parameter-tuning-for-vtab-1k)
 3. [Evaluate PEFT methods' robustness to domain shift ](#evaluate-robustness-of-peft-methods-to-domain-shift)
 4. [Evaluate PEFT methods on Many-shots (full) Datasets](#evaluate-peft-methods-on-many-shots-datasets)
 
-You can extend this code base to include
+You can extend this code base to include:
 1. [New datasets](#to-add-a-new-dataset)
 2. [New backbones](#to-add-a-new-backbone) 
 3. [New methods](#to-add-a-new-method) 
