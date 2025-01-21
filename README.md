@@ -16,7 +16,7 @@ This code base contains the following features::
 You can extend this code base to include
 1. [New datasets](#to-add-a-new-dataset)
 2. [New backbones](#to-add-a-new-backbone) 
-3. [Nw methods](#to-add-a-new-method) 
+3. [New methods](#to-add-a-new-method) 
 
  
 
