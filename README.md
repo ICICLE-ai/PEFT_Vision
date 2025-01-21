@@ -5,7 +5,20 @@
 Parameter-efficient fine tuning (PEFT) has attracted significant attention lately, due to the increasing size of pre-trained models and the need to fine-tune them for superior downstream performance. This community-wide enthusiasm has
 sparked a plethora of approaches. We conduct a unifying empirical study of 14 representative PEFT approaches in the context of Vision Transformers (ViT).
 
-We systematically tune their hyper-parameters to fairly compare their accuracy on downstream tasks. Our study not only offers a valuable user guide but also unveils several new insights. More detail can be found in [our paper](https://arxiv.org/pdf/2409.16434). 
+We systematically tune their hyper-parameters to fairly compare their accuracy on downstream tasks. Our study not only offers a valuable user guide but also unveils several new insights. More details can be found in [our paper](https://arxiv.org/pdf/2409.16434). 
+
+This code base contains the following features::
+1.  [Evaluate a PEFT method on one dataset with selected hyper-parameters](#evaluate-a-peft-method-on-one-dataset-in-vtab-1k)
+2. [Run hyper-parameter tuning for PEFT methods](#run-hyper-parameter-tuning-for-vtab-1k)
+3. [Evaluate PEFT methods' robustness to domain shift ](#evaluate-robustness-of-peft-methods-to-domain-shift)
+4. [Evaluate PEFT methods on Many-shots (full) Datasets](#evaluate-peft-methods-on-many-shots-datasets)
+
+You can extend this code base to include
+1. [New datasets](#to-add-a-new-dataset)
+2. [New backbones](#to-add-a-new-backbone) 
+3. [Nw methods](#to-add-a-new-method) 
+
+ 
 
 # Environment Setup  
 ```bash  
@@ -16,7 +29,7 @@ source env_setup.sh
 You can put all the data in a folder and pass the path to `--data_path` argument.  
 
 ## VTAB-1k  
-We provide two ways for preparing VTAB-1k dataset  
+We provide two ways to prepare VTAB-1k dataset  
  
 1. Processed Version  
    - Download the processed version from [here](https://buckeyemailosu-my.sharepoint.com/:u:/g/personal/mai_145_buckeyemail_osu_edu/ERnzBDVaA6BBpTCoBV0RbVIBF7JEZlIwlGyPdg4AhS_y4g?e=Kjc5uo).  
@@ -50,10 +63,13 @@ Download the pretrained weights from the following links and put them in the `pr
 2. [ViT-B-CLIP](https://huggingface.co/timm/vit_base_patch16_clip_224.openai/tree/main) rename it as `ViT-B_16_clip.bin`  
 3. [ViT-B-DINOV2](https://dl.fbaipublicfiles.com/dinov2/dinov2_vitb14/dinov2_vitb14_pretrain.pth) rename it as `ViT-B_14_dinov2.pth`  
   
+## To add a new backbone
+- modify `get_base_model()` in [build_model.py](experiment/build_model.py).
+  
 # Quick Start
   
 ## Evaluate a PEFT method on one dataset in VTAB-1K
-This section shows example commands to run 21 PEFT methods and baslines on DTD dataset in VTAB-1K. More argument options can be found in main.py. 
+This section shows example commands to run 21 PEFT methods and baselines on the DTD dataset in VTAB-1K. More argument options can be found in main.py. 
 
 **SSF**
 
@@ -155,6 +171,12 @@ This section shows example commands to run 21 PEFT methods and baslines on DTD d
     CUDA_VISIBLE_DEVICES=0  python main.py --full --eval_freq 2 --data_path data_folder/vtab_processed  --data processed_vtab-dtd 
 
 
+## To add a new method  
+1. add a new module file in `./model/`.   
+2. add the module accordingly in [block.py](model/block.py), [mlp.py](model/mlp.py), [patch_embed.py](model/patch_embed.py), [vision_transformer.py](model/vision_transformer.py), [attention.py](model/attention.py).
+3. add the name of the added module in TUNE_MODULES and modify `get_model()` in `./experiment/build_model.py` accordingly.
+4. add required arguments in `main.py`  
+
 ## Run Hyper-parameter Tuning for VTAB-1K
 
 This an example command to run hyper-parameter tuning for Caltech101 in VTAB-1K. 
@@ -183,7 +205,7 @@ for METHOD in lora_p_adapter repadapter rand_h_adapter adaptformer convpass fact
 ```
 
 
-## Evaluate PEFT methods' robustness to domain shift  
+## Evaluate robustness of PEFT methods to domain shift  
 We use the CLIP ViT-B/16 model and add an FC layer as the prediction head with zero-initialized bias and initialize weights using the class label text embedded by the text encoder. Subsequently, we discard the text encoder and apply PEFT methods to the visual encoder, fine-tuning only the PEFT modules and the head.
 
 The code to generate the prediction head for CLIP can be found at [build_clip_zs_classifier.py](experiment/build_clip_zs_classifier.py).  
@@ -228,7 +250,7 @@ CUDA_VISIBLE_DEVICES=0 python merge_petl.py --bs 1024 --default experiment/confi
 
 To get the WiSE curve plots, you can use `WiSE_PETL.ipynb`.
 
-##  Evaluate PEFT methods on Many-shot (Full) Datasets
+##  Evaluate PEFT methods on Many-shots Datasets
 We use three datasets for mann-shot experiments: CIFAR100, Clevr-distance and RESISC.
 
 Here is an example command to run the PEFT methods for the Clevr-distance dataset. Config files for CIFAR and RESISC can be found in the `experiment/config` folder.
@@ -244,17 +266,6 @@ done
 ## Results
 The tuning results are stord in `tune_summary.csv` and final run results in `final_result.json` and other results for all the experiments in the `tune_output` folder.
 
-
-## To add a new method  
-1. add a new module file in `./model/`.   
-2. add the module accordingly in [block.py](model/block.py), [mlp.py](model/mlp.py), [patch_embed.py](model/patch_embed.py), [vision_transformer.py](model/vision_transformer.py), [attention.py](model/attention.py).
-3. add the name of the added module in TUNE_MODULES and modify `get_model()` in `./experiment/build_model.py` accordingly.
-4. add required arguments in `main.py`  
-
-
-
-## To add a new backbone
-1. modify `get_base_model()` in [build_model.py](experiment/build_model.py).
 
 ## To run new hyperparameter tuning
 1. add a general config file and a learning rate and weight decay config file in `./experiment/config/`.
