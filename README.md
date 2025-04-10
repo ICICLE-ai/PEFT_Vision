@@ -51,13 +51,15 @@ We use the CLIP ViT-B/16 model and add an FC layer as the prediction head with z
 The code to generate the prediction head for CLIP can be found at [build_clip_zs_classifier.py](experiment/build_clip_zs_classifier.py).  
 
 **Fine-tuning the CLIP on downstream data.** 
+
 This is an example command to run a PEFT method (LoRA with dimension 32) for the 100-shot ImageNet dataset:
 ```bash
 CUDA_VISIBLE_DEVICES=0  python main.py --data fs-imagenet --data_path data_folder/imagenet/images --warmup_lr_init 1.0e-7 --lr 0.00003 --wd 0.005 --eval_freq 1 --store_ckp --lora_bottleneck 32  --batch_size 256 --final_acc_hp --early_patience 10
 ```
 If you want to run hyper-parameter tuning on datasets, you can find details [here](https://github.com/OSU-MLB/ViT_PEFT_Vision?tab=readme-ov-file).
 
-**Evaluation on OOD data.**
+**Evaluation of fine-tuned CLP on OOD data.**
+
 To evaluate the performance of fine-tuned models on OOD data, here is an example command:
 
 ```bash  
