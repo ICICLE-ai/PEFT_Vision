@@ -1,7 +1,8 @@
 
 
-<h1 style="font-size: 155 pt;" align=center><strong>A Systematic Framework for Parameter-Efficient Fine Tuning (PEFT) in Visual Recognition</strong></h2>
-
+<h1 style="font-size: 155 pt;" align=center><strong>Lessons and Insights from a Unifying Study of Parameter-Efficient Fine-Tuning (PEFT) in Visual Recognition</strong></h1>
+ 
+ <h3> A Systematic Framework for Parameter-Efficient Fine Tuning (PEFT) in Visual Recognition </h3>
 
 Parameter-efficient fine-tuning (PEFT) has attracted significant attention lately due to the increasing size of pre-trained models and the need to fine-tune them for superior downstream performance. This community-wide enthusiasm has
 sparked a plethora of approaches. We provide a systematic and comprehensive code base implementing 16 PEFL methods, which serves as a valuable resource for researchers and enables **consistent and reproducible evaluations** of PEFT methods. We conduct a unifying empirical study of 16 representative PEFT approaches in **various scenarios**, including low shots, many shots, different domain gaps, and robustness between in-distribution and OOD. Our findings offer several insightful directions for future research, including **leveraging prediction differences** in other learning paradigms such as semi-supervised learning and domain adaptation, **robust fine-tuning with PEFT**, and  providing **empirical evidence for PEFT mechanism understanding**.
