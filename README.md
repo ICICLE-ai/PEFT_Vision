@@ -3,10 +3,12 @@
 <h1 style="font-size: 155 pt;" align=center><strong>A Systematic Framework for Parameter-Efficient Fine Tuning (PEFT) in Visual Recognition</strong></h2>
 
 
-Parameter-efficient fine tuning (PEFT) has attracted significant attention lately due to the increasing size of pre-trained models and the need to fine-tune them for superior downstream performance. This community-wide enthusiasm has
+Parameter-efficient fine-tuning (PEFT) has attracted significant attention lately due to the increasing size of pre-trained models and the need to fine-tune them for superior downstream performance. This community-wide enthusiasm has
 sparked a plethora of approaches. We provide a systematic and comprehensive code base implementing 16 PEFL methods, which serves as a valuable resource for researchers and enables **consistent and reproducible evaluations** of PEFT methods. We conduct a unifying empirical study of 16 representative PEFT approaches in **various scenarios**, including low shots, many shots, different domain gaps, and robustness between in-distribution and OOD. Our findings offer several insightful directions for future research, including **leveraging prediction differences** in other learning paradigms such as semi-supervised learning and domain adaptation, **robust fine-tuning with PEFT**, and  providing **empirical evidence for PEFT mechanism understanding**.
 
 More details can be found in [our paper](https://arxiv.org/pdf/2409.16434) and [project page](https://zheda-mai.github.io/PEFT_Vision_CVPR25/). 
+
+The ICICLE tag for this project is Foundation-AI. 
 
 <!--
 This code base contains the following features:
@@ -21,20 +23,22 @@ You can extend this code base to include:
 3. [New methods](#to-add-a-new-method) 
 -->
  
+# Tutorial 
+These are required setup steps to use PEFT methods in our codebase.
 
-# Environment Setup  
+### Environment Setup  
 ```bash  
 source env_setup.sh
 ```  
   
-# Data Preparation
+### Data Preparation
 Details about how to prepare for common visual recognition datasets for PEFT,  including VTAB-1K, ImageNet-(Original, Sketch, Adversarial, V2, Rendition), CIFAR, RESISC45, Clevvr-Distance and how to add new datasets to the framework can be found [here](https://github.com/OSU-MLB/ViT_PEFT_Vision?tab=readme-ov-file).
 
-# Pre-trained weights
+### Pre-trained weights
 Details about how to prepare for pre-trained vision backbones and add new backbones to the framework can be found [here](https://github.com/OSU-MLB/ViT_PEFT_Vision?tab=readme-ov-file).
 
   
-# Quick Start
+# How-To Guides
   After the environment, dataset and pre-trained weights are set up. You can use any of the 21 methods (16 PEFT methods and 5 baselines) on low-shot datasets (VTAB-1K), many-shot datasets (CIFAR, RESISC45, Clevvr-Distance) and domain-shift datasets (ImageNet and variants). We provide an example for each setting below:
   
 ### Evaluate PEFT methods on one dataset in VTAB-1K
@@ -124,7 +128,7 @@ If you use this paper/code in your research, please consider citing us:
 Detailed references  can be found [here](https://github.com/OSU-MLB/ViT_PEFT_Vision?tab=readme-ov-file).
 
 ## License
-Code under this repo is licensed under a MIT License.
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT): code under this repo is licensed under a MIT license.
 
 ## Acknowledgement
 This work has been sponsored in part by grants from the National Science Fundation, including the ICICLE AI Institute (OAC 2112606), Amazon, and Ohio Supercomputer Center.
