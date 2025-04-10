@@ -24,8 +24,8 @@ You can extend this code base to include:
 3. [New methods](#to-add-a-new-method) 
 -->
  
-# Tutorial 
-These are required setup steps to use PEFT methods in our codebase.
+# How-To Guides 
+These are the required setup steps for using PEFT methods in our codebase.
 
 ### Environment Setup  
 ```bash  
@@ -39,7 +39,7 @@ Details about how to prepare for common visual recognition datasets for PEFT,  i
 Details about how to prepare for pre-trained vision backbones and add new backbones to the framework can be found [here](https://github.com/OSU-MLB/ViT_PEFT_Vision?tab=readme-ov-file).
 
   
-# How-To Guides
+##  Quick Start
   After the environment, dataset and pre-trained weights are set up. You can use any of the 21 methods (16 PEFT methods and 5 baselines) on low-shot datasets (VTAB-1K), many-shot datasets (CIFAR, RESISC45, Clevvr-Distance) and domain-shift datasets (ImageNet and variants). We provide an example for each setting below:
   
 ### Evaluate PEFT methods on one dataset in VTAB-1K
